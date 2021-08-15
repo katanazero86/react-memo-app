@@ -3,9 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import './test.scss';
 import classes from './test.module.scss';
+import {useAtom} from 'jotai';
+import {countAtom} from './store/atoms';
 
 function App() {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0);
+
+    const [count2, setCount2] = useAtom(countAtom);
 
     return (
         <div className="App">
@@ -40,6 +44,11 @@ function App() {
                     </a>
                 </p>
             </header>
+            <p>
+                <button type="button" onClick={() => setCount2((count) => count + 1)}>
+                    count is: {count2}
+                </button>
+            </p>
             <div className="test">
                 <p>
                     SCSS TEST
