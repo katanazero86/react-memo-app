@@ -1,0 +1,113 @@
+@charset "UTF-8";
+@import './variables';
+@import './functions';
+
+@mixin responsive($type) {
+
+  @if $type == mobile {
+    // extra small less than 640px
+    @media screen and (min-width: 370px) and (max-width: $xs - 1px) {
+      @content
+    }
+  } @else if $type == tablet {
+    // small device or tablet 640px up
+    @media screen and (min-width: $xs) and (max-width: $md - 1px) {
+      @content
+    }
+  } @else if $type == desktop {
+    // desktop 960px up
+    @media screen and (min-width: $md) and (max-width: $lg - 1px) {
+      @content
+    }
+  } @else {
+    // 1140px up
+    @media screen and (min-width: $lg) {
+      @content
+    }
+  }
+}
+
+@mixin responsive-col($type) {
+  // breakpoint up
+  @if $type == '' {
+    @media screen and (min-width: 350px) {
+      // 350px up
+      // default
+      @content
+    }
+  } @else if $type == tablet {
+    // 640px up
+    // sm
+    @media screen and (min-width: $xs) {
+      @content
+    }
+  } @else if $type == desktop {
+    // 960px up
+    // md
+    @media screen and (min-width: $md) {
+      @content
+    }
+  } @else if $type == large {
+    // 1140px up
+    // lg
+    @media screen and (min-width: $lg) {
+      @content
+    }
+  }
+}
+
+@mixin render-col($type) {
+
+  .row, .row-wrap, .column {
+    > .col#{$type} {
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+    }
+  }
+
+  //.col#{$type} {
+  //  flex-grow: 1;
+  //  flex-shrink: 1;
+  //  flex-basis: 0;
+  //}
+
+  @for $i from 1 through $grid-cols-num {
+    // col-xs-1
+    // col-sm-1
+    // col-md-1
+    // col-1
+
+    .row, .row-wrap, .column {
+      > .col#{$type}-#{$i} {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: get-size($i);
+        max-width: get-size($i);
+      }
+    }
+
+    //.col#{$type}-#{$i} {
+    //  flex-grow: 0;
+    //  flex-shrink: 0;
+    //  flex-basis: get-size($i);
+    //  max-width: get-size($i);
+    //}
+  }
+}
+
+@mixin overlay-background {
+  background-color: rgba(10, 10, 10, 0.3);
+}
+
+@mixin box-shadow-1 {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+}
+
+@mixin box-shadow-2 {
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+}
+
+@mixin box-shadow-3 {
+  box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+}
