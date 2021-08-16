@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
-import './App.css';
 import './test.scss';
 import classes from './test.module.scss';
 import {useAtom} from 'jotai';
 import {countAtom} from './store/atoms';
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
     // const [count, setCount] = useState(0);
@@ -13,6 +12,7 @@ export default function App() {
     return (
         <div>
             ddd
+            <Footer />
         </div>
         // <div className="App">
         //     <header className="App-header">
