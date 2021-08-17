@@ -1,0 +1,9 @@
+@charset "UTF-8";
+@import '../../../assets/scss/common/variables';
+
+.limit {
+  font-size: 12px;
+  text-align: end;
+  color: $dark-color;
+  font-weight: 500;
+}

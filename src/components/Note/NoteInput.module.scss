@@ -1,0 +1,19 @@
+@charset "UTF-8";
+@import '../../assets/scss/common/variables';
+
+.note-input {
+  background-color: $primary-color;
+  border-radius: 4px;
+
+  &__header {
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    font-weight: 600;
+    color: $dark-color;
+  }
+
+  &__input {
+    margin-top: 20px;
+  }
+
+}

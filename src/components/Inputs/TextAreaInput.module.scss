@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+@import '../../assets/scss/common/mixins';
+
+.textarea {
+  appearance: none;
+  outline: none;
+  resize: none;
+  border: 1px solid transparent;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100%;
+
+  @include scroll-custom();
+
+}

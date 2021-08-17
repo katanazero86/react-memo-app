@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@import '../assets/scss/common/variables';
+
+.index-wrap {
+    min-height: 100%;
+    background-color: $background-color;
+
+    .index {
+        width: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+    }
+
+}
