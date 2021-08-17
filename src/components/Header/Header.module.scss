@@ -4,10 +4,8 @@
 @import '../../assets/scss/common/variables';
 
 .header {
-
-  @include box-shadow-1();
   position: relative;
-  background-color: $background-color;
+  background-color: $header-bg-color;
   color: $dark-color;
 
   &__title {

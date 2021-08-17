@@ -6,7 +6,7 @@
   font-size: 14px;
   letter-spacing: -0.5px;
   font-weight: 400;
-  background-color: $background-color;
+  background-color: $footer-bg-color;
   color: $dark-color;
 
   &__description {
@@ -22,7 +22,7 @@
   @media (hover: hover) {
     &__link {
       span:hover {
-        color: $secondary-color;
+        color: $white-color;
       }
     }
   }

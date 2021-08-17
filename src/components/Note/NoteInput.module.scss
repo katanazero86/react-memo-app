@@ -1,7 +1,10 @@
 @charset "UTF-8";
 @import '../../assets/scss/common/variables';
+@import '../../assets/scss/common/mixins';
 
 .note-input {
+
+  @include box-shadow-1();
   background-color: $primary-color;
   border-radius: 4px;
 

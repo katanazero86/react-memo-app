@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './Icon.module.scss';
 
-export default function AddBox({handleClick, width = 24, height = 24, color = '#424242'}) {
+export default function AddBox({handleClick, width = 24, height = 24, color = '#151515'}) {
     return (
         <div className={classes.icon} onClick={handleClick}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={width} height={height} fill={color}>

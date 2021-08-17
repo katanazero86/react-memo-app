@@ -60,11 +60,11 @@ export default function NoteInput() {
                         <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={10}
                                        maxLength={250}/>
                     </div>
+                    <div className={`${classes.noteInputLabel} row align-items-center`}>
+                        <SelectLabelDropdown />
+                    </div>
                 </React.Fragment>
             )}
-            <div className={`${classes.noteInputLabel} row align-items-center`}>
-                <SelectLabelDropdown />
-            </div>
         </div>
     )
 }
