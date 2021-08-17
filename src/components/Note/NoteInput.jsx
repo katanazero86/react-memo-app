@@ -4,6 +4,7 @@ import ArrowUp from "../Icons/ArrowUp";
 import ArrowDown from "../Icons/ArrowDown";
 import BasicInput from "../Inputs/BasicInput";
 import TextAreaInput from "../Inputs/TextAreaInput";
+import AddBox from "../Icons/AddBox";
 
 export default function NoteInput() {
 
@@ -17,7 +18,7 @@ export default function NoteInput() {
 
     const [title, setTitle] = useState('');
     const handleTitleChange = useCallback(value => {
-        if(value.trim().length === 0) {
+        if (value.trim().length === 0) {
             setTitle('');
             return false;
         }
@@ -28,14 +29,23 @@ export default function NoteInput() {
 
     const [memo, setMemo] = useState('');
     const handleMemoChange = useCallback(value => {
-        if(value.trim().length === 0) {
+        if (value.trim().length === 0) {
             setMemo('');
             return false;
         }
         let targetValue = value;
         if (value.length > 250) targetValue = value.slice(0, 250);
         setMemo(targetValue);
-    },[]);
+    }, []);
+
+    const [selectLabelIsOpen, setSelectLabelIsOpen] = useState(false);
+    const handleSelectLabelIsOpenOpen = useCallback(() => {
+        console.log('zz');
+        setSelectLabelIsOpen(true);
+    }, []);
+    // const handleSelectLabelIsOpenClose = useCallback(() => {
+    //     setSelectLabelIsOpen(false);
+    // }, []);
 
     return (
         <div className={`${classes.noteInput} pa-4`}>
@@ -43,7 +53,8 @@ export default function NoteInput() {
                 <p>
                     Note Add
                 </p>
-                {addIsOpen ? <ArrowUp handleClick={handleAddIsOpenClose}/> :
+                {addIsOpen ?
+                    <ArrowUp handleClick={handleAddIsOpenClose}/> :
                     <ArrowDown handleClick={handleAddIsOpenOpen}/>}
             </header>
             {addIsOpen && (
@@ -53,10 +64,18 @@ export default function NoteInput() {
                                     valueLimit={50}/>
                     </div>
                     <div className={`${classes.noteInputInput}`}>
-                        <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={10} maxLength={250} />
+                        <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={10}
+                                       maxLength={250}/>
                     </div>
                 </React.Fragment>
             )}
+            <div className={`${classes.noteInputLabel} row align-items-center`} onClick={handleSelectLabelIsOpenOpen}>
+                <AddBox />
+                <span>
+                    Select Labels
+                </span>
+
+            </div>
         </div>
     )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './Icon.module.scss';
 
-export default function ArrowDown({handleClick, width = 24, height = 24, color = '#000000'}) {
+export default function ArrowDown({handleClick, width = 24, height = 24, color = '#424242'}) {
     return (
         <div className={classes.icon} onClick={handleClick}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"

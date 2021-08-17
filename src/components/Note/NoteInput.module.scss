@@ -16,4 +16,17 @@
     margin-top: 20px;
   }
 
+  &__label {
+    margin-top: 20px;
+    cursor: pointer;
+
+    > span {
+      letter-spacing: -0.3px;
+      font-weight: 500;
+      color: $dark-color;
+      font-size: 16px;
+    }
+
+  }
+
 }
