@@ -1,0 +1,45 @@
+@charset "UTF-8";
+@import '../../../assets/scss/common/variables';
+
+.select-label-dropdown {
+
+  cursor: pointer;
+  position: relative;
+  padding: 2px 0;
+  height: 28px;
+
+  > span {
+    letter-spacing: -0.3px;
+    font-weight: 500;
+    color: $dark-color;
+    font-size: 16px;
+  }
+
+  > ul {
+    position: absolute;
+    top: calc(0px + 24px);
+    margin: 0;
+    padding: 0;
+    li {
+      width: 200px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      padding: 10px;
+      background-color: $white-color;
+
+      > p {
+        padding-right: 12px;
+      }
+
+      > span {
+        display: inline-block;
+        width: 64px;
+        height: 14px;
+        border-radius: 10px;
+      }
+    }
+  }
+}

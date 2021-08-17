@@ -1,10 +1,10 @@
 import React, {useState, useCallback} from 'react';
 import classes from './NoteInput.module.scss';
-import ArrowUp from "../Icons/ArrowUp";
-import ArrowDown from "../Icons/ArrowDown";
-import BasicInput from "../Inputs/BasicInput";
-import TextAreaInput from "../Inputs/TextAreaInput";
-import AddBox from "../Icons/AddBox";
+import ArrowUp from "@/components/Icons/ArrowUp";
+import ArrowDown from "@/components/Icons/ArrowDown";
+import BasicInput from "@/components/Inputs/BasicInput";
+import TextAreaInput from "@/components/Inputs/TextAreaInput";
+import SelectLabelDropdown from "@/components/Note/SelectLabelDropdown/SelectLabelDropdown";
 
 export default function NoteInput() {
 
@@ -39,13 +39,6 @@ export default function NoteInput() {
     }, []);
 
     const [selectLabelIsOpen, setSelectLabelIsOpen] = useState(false);
-    const handleSelectLabelIsOpenOpen = useCallback(() => {
-        console.log('zz');
-        setSelectLabelIsOpen(true);
-    }, []);
-    // const handleSelectLabelIsOpenClose = useCallback(() => {
-    //     setSelectLabelIsOpen(false);
-    // }, []);
 
     return (
         <div className={`${classes.noteInput} pa-4`}>
@@ -69,12 +62,8 @@ export default function NoteInput() {
                     </div>
                 </React.Fragment>
             )}
-            <div className={`${classes.noteInputLabel} row align-items-center`} onClick={handleSelectLabelIsOpenOpen}>
-                <AddBox />
-                <span>
-                    Select Labels
-                </span>
-
+            <div className={`${classes.noteInputLabel} row align-items-center`}>
+                <SelectLabelDropdown />
             </div>
         </div>
     )
