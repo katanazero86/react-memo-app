@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@import '../../assets/scss/common/variables';
+@import '../../assets/scss/common/mixins';
+
+.button {
+
+    appearance: none;
+    outline: none;
+    border: 1px solid $secondary-color;
+    font-size: 16px;
+    background-color: $white-color;
+    color: $dark-color;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+
+    &--block {
+        width: 100%;
+    }
+
+}
+
+

@@ -1,10 +1,11 @@
 import React, {useState, useCallback} from 'react';
 import classes from './NoteInput.module.scss';
-import ArrowUp from "@/components/Icons/ArrowUp";
-import ArrowDown from "@/components/Icons/ArrowDown";
-import BasicInput from "@/components/Inputs/BasicInput";
-import TextAreaInput from "@/components/Inputs/TextAreaInput";
-import SelectLabelDropdown from "@/components/Note/SelectLabelDropdown/SelectLabelDropdown";
+import ArrowUp from '@/components/Icons/ArrowUp';
+import ArrowDown from '@/components/Icons/ArrowDown';
+import BasicInput from '@/components/Inputs/BasicInput';
+import TextAreaInput from '@/components/Inputs/TextAreaInput';
+import SelectLabelDropdown from '@/components/Note/SelectLabelDropdown/SelectLabelDropdown';
+import BasicButton from '@/components/Buttons/BasicButton';
 
 export default function NoteInput() {
 
@@ -61,8 +62,13 @@ export default function NoteInput() {
                                        maxLength={250}/>
                     </div>
                     <div className={`${classes.noteInputLabel} row align-items-center`}>
-                        <SelectLabelDropdown />
+                        <SelectLabelDropdown/>
                     </div>
+                    <div className={`${classes.noteInputButtons} row align-items-center justify-contents-between`}>
+                        <BasicButton block name="초기화"/>
+                        <BasicButton block name="작성"/>
+                    </div>
+
                 </React.Fragment>
             )}
         </div>
