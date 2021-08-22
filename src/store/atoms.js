@@ -31,4 +31,7 @@ export const memoLabels = atom([
         rgb: '77,165,189',
         name: '백엔드',
     },
-])
+]);
+
+
+export const memoList = atom([]);

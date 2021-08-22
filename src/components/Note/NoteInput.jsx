@@ -1,4 +1,6 @@
 import React, {useState, useCallback} from 'react';
+import {useAtom} from 'jotai';
+import {memoList} from '../../store/atoms';
 import classes from './NoteInput.module.scss';
 import ArrowUp from '@/components/Icons/ArrowUp';
 import ArrowDown from '@/components/Icons/ArrowDown';
@@ -39,7 +41,27 @@ export default function NoteInput() {
         setMemo(targetValue);
     }, []);
 
-    const [selectLabelIsOpen, setSelectLabelIsOpen] = useState(false);
+    const handleInitMemoClick = useCallback(() => {
+        setTitle('');
+        setMemo('');
+        setSelectedLabel(null);
+    }, []);
+
+    const [selectedLabel, setSelectedLabel] = useState(null);
+    const handleSelectLabelClick = targetLabel => {
+        setSelectedLabel(targetLabel);
+    };
+
+    const [memoItems, setMemoItems] = useAtom(memoList);
+    const handleSubmitClick = () => {
+        const submitObj = {
+            label: selectedLabel,
+            title,
+            memo,
+        };
+        setMemoItems([...memoItems, submitObj]);
+        handleInitMemoClick();
+    }
 
     return (
         <div className={`${classes.noteInput} pa-4`}>
@@ -55,18 +77,20 @@ export default function NoteInput() {
                 <React.Fragment>
                     <div className={`${classes.noteInputInput}`}>
                         <BasicInput type="text" value={title} placeholder="제목" handleChange={handleTitleChange}
-                                    valueLimit={50}/>
+                                    valueLimit={30}/>
                     </div>
                     <div className={`${classes.noteInputInput}`}>
                         <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={10}
-                                       maxLength={250}/>
+                                       maxLength={150}/>
                     </div>
                     <div className={`${classes.noteInputLabel} row align-items-center`}>
-                        <SelectLabelDropdown/>
+                        <SelectLabelDropdown handleSelectItemClick={handleSelectLabelClick}/>
                     </div>
+                    {selectedLabel &&
+                    <div className={classes.selectedLabel} style={{'backgroundColor': `${selectedLabel.hex}`}}></div>}
                     <div className={`${classes.noteInputButtons} row align-items-center justify-contents-between`}>
-                        <BasicButton block name="초기화"/>
-                        <BasicButton block name="작성"/>
+                        <BasicButton block name="초기화" handleClick={handleInitMemoClick}/>
+                        <BasicButton block name="작성" handleClick={handleSubmitClick}/>
                     </div>
 
                 </React.Fragment>

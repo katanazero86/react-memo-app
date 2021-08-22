@@ -1,10 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {useAtom,} from 'jotai';
-import {memoLabels} from "../../../store/atoms";
+import PropTypes from 'prop-types'
+import {useAtom} from 'jotai';
+import {memoLabels} from '../../../store/atoms';
 import classes from './SelectLabelDropdown.module.scss';
-import AddBox from "../../Icons/AddBox";
+import AddBox from '../../Icons/AddBox';
 
-export default function SelectLabelDropdown() {
+export default function SelectLabelDropdown({handleSelectItemClick}) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [labels] = useAtom(memoLabels);
@@ -23,6 +24,11 @@ export default function SelectLabelDropdown() {
         };
     }, [dropdownRef]);
 
+    const handleClick = (e, targetLabel) => {
+        e.preventDefault();
+        handleSelectItemClick({...targetLabel});
+    }
+
     return (
         <div className={`${classes.selectLabelDropdown} row align-items-center`} onClick={() => setIsOpen(!isOpen)}
              ref={dropdownRef}>
@@ -33,7 +39,7 @@ export default function SelectLabelDropdown() {
             {isOpen ? <ul>
                 {labels.map(label => {
                     return (
-                        <li key={label.id} onClick={e => e.stopPropagation()}>
+                        <li key={label.id} onClick={e => handleClick(e, label)}>
                             <p>{label.name}</p> <span style={{'background': label.hex}}></span>
                         </li>
                     )
@@ -41,4 +47,8 @@ export default function SelectLabelDropdown() {
             </ul> : ''}
         </div>
     )
+}
+
+SelectLabelDropdown.propTypes = {
+    handleSelectItemClick: PropTypes.func,
 }
