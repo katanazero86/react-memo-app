@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useRef} from 'react';
 import {useAtom} from 'jotai';
 import {memoList} from '../../store/atoms';
 import classes from './NoteInput.module.scss';
@@ -52,10 +52,25 @@ export default function NoteInput() {
         setSelectedLabel(targetLabel);
     };
 
+    const inputTitleRef = useRef(null);
+    const inputMemoRef = useRef(null);
     const [memoItems, setMemoItems] = useAtom(memoList);
     const handleSubmitClick = () => {
+        
+        if(title.trim() === '') {
+            alert('제목을 입력해주세요.');
+            inputTitleRef.current.focus();
+            return false;
+        }
+
+        if(memo.trim() === '') {
+            alert('메모를 입력해주세요.');
+            inputMemoRef.current.focus();
+            return false;
+        }
+        
         const submitObj = {
-            label: selectedLabel,
+            selectedLabel,
             title,
             memo,
         };
@@ -77,11 +92,11 @@ export default function NoteInput() {
                 <React.Fragment>
                     <div className={`${classes.noteInputInput}`}>
                         <BasicInput type="text" value={title} placeholder="제목" handleChange={handleTitleChange}
-                                    valueLimit={30}/>
+                                    valueLimit={30} inputRef={inputTitleRef}/>
                     </div>
                     <div className={`${classes.noteInputInput}`}>
-                        <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={10}
-                                       maxLength={150}/>
+                        <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={8}
+                                       maxLength={100} inputRef={inputMemoRef}/>
                     </div>
                     <div className={`${classes.noteInputLabel} row align-items-center`}>
                         <SelectLabelDropdown handleSelectItemClick={handleSelectLabelClick}/>

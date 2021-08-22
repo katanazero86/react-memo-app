@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classes from './TextAreaInput.module.scss';
 import Limit from "./Limit/Limit";
 
-export default function TextAreaInput({id = '', name = '', placeholder = '', rows = 3, cols = 3, maxLength = 120, value, handleChange}) {
+export default function TextAreaInput({id = '', name = '', placeholder = '', rows = 3, cols = 3, maxLength = 120, value, handleChange, inputRef = null}) {
     return (
         <React.Fragment>
             <textarea className={classes.textarea}
@@ -15,6 +15,7 @@ export default function TextAreaInput({id = '', name = '', placeholder = '', row
                       maxLength={maxLength}
                       value={value}
                       onChange={e => handleChange(e.target.value)}
+                      ref={inputRef}
             />
             {maxLength > 0 ? <Limit value={value} valueLimit={maxLength}/> : ''}
         </React.Fragment>
@@ -30,4 +31,5 @@ TextAreaInput.propTypes = {
     maxLength: PropTypes.number,
     value: PropTypes.string,
     handleChange: PropTypes.func,
+    inputRef: PropTypes.object,
 };
