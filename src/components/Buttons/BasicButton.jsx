@@ -4,9 +4,10 @@ import classes from './BasicButton.module.scss';
 
 export default function BasicButton({name = '', block = false, outline = false, small = false, handleClick}) {
     return (
-        <button className={`${classes.button} ${outline && classes.buttonOutline} ${block && classes.buttonBlock} ${small && classes.buttonSmall}`}
-                type="button"
-                onClick={handleClick}>{name}</button>
+        <button
+            className={`${classes.button} ${outline && classes.buttonOutline} ${block && classes.buttonBlock} ${small && classes.buttonSmall}`}
+            type="button"
+            onClick={handleClick}>{name}</button>
     )
 }
 
