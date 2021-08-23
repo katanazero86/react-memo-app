@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Footer.module.scss';
 
 const links = [
-    {name: 'GitHub', url: 'https://github.com/katanazero86/vue-weather-v3'}
+    {name: 'GitHub', url: 'https://github.com/katanazero86/react-memo-app'}
 ];
 
 export default function Footer() {
