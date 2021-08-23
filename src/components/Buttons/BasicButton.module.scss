@@ -19,6 +19,11 @@
     width: 100%;
   }
 
+  &--small {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
   &--outline {
     background-color: transparent;
     border: 1px solid $primary-color;

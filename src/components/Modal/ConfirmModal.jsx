@@ -20,8 +20,8 @@ export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg
                         {msg}
                     </h3>
                     <div className='modal-buttons row align-items-center justify-contents-between'>
-                        <BasicButton name='확인' block handleClick={handleConfirmClick}/>
-                        <BasicButton name='취소' block handleClick={handleCancelClick}/>
+                        <BasicButton name='확인' block outline small handleClick={handleConfirmClick}/>
+                        <BasicButton name='취소' block outline small handleClick={handleCancelClick}/>
                     </div>
                 </div>
             </div>
