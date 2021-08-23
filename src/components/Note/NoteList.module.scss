@@ -4,27 +4,23 @@
 
 .note-list {
 
-  border: 1px solid $border-color;
-  background-color: $white-color;
-  border-radius: 4px;
+  &__item {
+    border: 1px solid $border-color;
+    background-color: $white-color;
+    border-radius: 4px;
 
-  &__header {
-    font-size: 18px;
-    letter-spacing: -0.3px;
-    font-weight: 600;
-    color: $dark-color;
+    &:not(:first-child) {
+
+      margin-top: 8px;
+
+    }
+
   }
 
-  &__input {
-    margin-top: 20px;
-  }
-
-  &__label {
-    margin-top: 20px;
-  }
 
   &__buttons {
     margin-top: 20px;
+
     > button:first-child {
       margin-right: 2px;
     }
@@ -35,10 +31,14 @@
   }
 
   .selected-label {
-    display: inline-block;
-    width: 64px;
-    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    width: 80px;
     border-radius: 10px;
+    color: #ffffff;
+    font-size: 12px;
   }
 
 }
