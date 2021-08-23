@@ -83,7 +83,7 @@ export default function NoteInput() {
         <div className={`${classes.noteInput} pa-4`}>
             <header className={`${classes.noteInputHeader} row align-items-center justify-contents-between`}>
                 <p>
-                    Note Add
+                    Memo Add
                 </p>
                 {addIsOpen ?
                     <ArrowUp handleClick={handleAddIsOpenClose}/> :
