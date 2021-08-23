@@ -52,7 +52,7 @@ export default function NoteList() {
             confirmFunc: confirmCallback,
         });
 
-    }, []);
+    }, [memoItems]);
 
     return (
         <React.Fragment>
@@ -61,7 +61,7 @@ export default function NoteList() {
                 <div className={`${classes.noteList}`}>
                     {memoItems.length > 0 && (
                         memoItems.map(item => (
-                            <NoteItem key={item} targetItem={item} handleDeleteClick={handleDeleteClick}/>
+                            <NoteItem key={item.idx} targetItem={item} handleDeleteClick={handleDeleteClick}/>
                         ))
                     )}
                 </div>
