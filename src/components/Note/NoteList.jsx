@@ -1,22 +1,31 @@
-import React, {useState, useCallback} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
+import PropTypes from 'prop-types';
 import {useAtom} from 'jotai';
 import {memoList} from '../../store/atoms';
+import useConfirmModal from '../../hooks/useConfirmModal';
+import useDragAndDrop from '../../hooks/useDragAndDrop';
 import classes from './NoteList.module.scss';
 import Delete from '../Icons/Delete';
 import DragHandler from '../Icons/DragHandler';
 import ConfirmModal from '../Modal/ConfirmModal';
 
 const NoteItem = ({targetItem, handleDeleteClick, handleDragStart, handleDragEnd, handleDrop, handleDragOver}) => {
+
+    const [memoItems,] = useAtom(memoList);
+    const dragRef = useRef(null);
+    const {initDragAndDrop, removeDragAndDrop} = useDragAndDrop(dragRef)
+
+    useEffect(() => {
+        initDragAndDrop({handleDragStart, handleDragEnd, handleDrop, handleDragOver});
+        return () => removeDragAndDrop({handleDragStart, handleDragEnd, handleDrop, handleDragOver});
+    }, [dragRef, memoItems]);
+
     return (
         <div className={`${classes.noteListItem} pa-4`}
-             draggable={true}
-             onDragStart={handleDragStart}
-             onDragEnd={handleDragEnd}
-             onDrop={handleDrop}
-             onDragOver={handleDragOver}
+             ref={dragRef}
              data-idx={targetItem.idx}>
             <div className={`row align-items-center justify-contents-between`}>
-                <DragHandler handleDrag={handleDragStart}/>
+                <DragHandler/>
                 <Delete width={18} height={18} handleClick={() => handleDeleteClick(targetItem)}/>
             </div>
             <div onMouseDown={e => e.preventDefault()}>
@@ -38,42 +47,39 @@ const NoteItem = ({targetItem, handleDeleteClick, handleDragStart, handleDragEnd
     )
 };
 
+NoteItem.propTypes = {
+    width: PropTypes.number,
+    height: PropTypes.number,
+    color: PropTypes.string,
+};
+
 export default function NoteList() {
 
     const [memoItems, setMemoItems] = useAtom(memoList);
-    const [confirm, setConfirm] = useState({
-        msg: '해당 메모를 삭제 하시겠습니까?',
-        isOpenConfirm: false,
-        confirmFunc: null,
-    })
+    const {confirm, setConfirm, handleCancelClick, openConfirm} = useConfirmModal();
 
     const handleDeleteClick = useCallback(targetItem => {
-        const confirmCallback = () => {
+        const msg = '해당 메모를 삭제 하시겠습니까?';
+        const confirmFunc = () => {
             setMemoItems(memoItems.filter(item => item.idx !== targetItem.idx));
             setConfirm({
-                ...confirm,
+                msg: '',
                 isOpenConfirm: false,
                 confirmFunc: null,
             });
         };
-        setConfirm({
-            ...confirm,
-            isOpenConfirm: true,
-            confirmFunc: confirmCallback,
-        });
+        openConfirm(msg, confirmFunc);
 
     }, [memoItems]);
 
     const handleDragStart = e => {
         e.dataTransfer.setData('idx', e.target.dataset.idx);
-        e.target.style.opacity = '0.6';
+        e.target.style.opacity = '0.5';
     };
 
     const handleDrop = e => {
         const targetIdx = e.dataTransfer.getData('idx');
         const dropElIdx = e.currentTarget.dataset.idx;
-        console.log(targetIdx);
-        console.log(dropElIdx);
         if (targetIdx !== dropElIdx) {
             const targetItemIndex = memoItems.findIndex(item => item.idx == targetIdx);
             const dropItemIndex = memoItems.findIndex(item => item.idx == dropElIdx);
@@ -115,8 +121,9 @@ export default function NoteList() {
                     )}
                 </div>
             }
-            <ConfirmModal isOpenConfirm={confirm.isOpenConfirm} msg="해당 메모를 삭제 하시겠습니까?"
-                          handleCancelClick={() => setConfirm({...confirm, isOpenConfirm: false,})}
+            <ConfirmModal isOpenConfirm={confirm.isOpenConfirm}
+                          msg={confirm.msg}
+                          handleCancelClick={handleCancelClick}
                           handleConfirmClick={confirm.confirmFunc}/>
         </React.Fragment>
     )

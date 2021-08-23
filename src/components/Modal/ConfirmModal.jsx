@@ -4,8 +4,7 @@ import './Modal.scss';
 import classes from './ConfirmModal.module.scss';
 import BasicButton from '../Buttons/BasicButton';
 
-export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg = '', isOpenConfirm}) {
-
+export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg = '', isOpenConfirm = false}) {
     const handleOverlayClick = e => {
         e.preventDefault();
         if (e.target === e.currentTarget) handleCancelClick();
@@ -13,19 +12,19 @@ export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg
 
     return (
         <React.Fragment>
-        {isOpenConfirm && <div className={`${classes.confirm} modal`}>
-            <div className='modal__overlay' onClick={handleOverlayClick}>
-                <div className='modal-body'>
-                    <h3>
-                        {msg}
-                    </h3>
-                    <div className='modal-buttons row align-items-center justify-contents-between'>
-                        <BasicButton name='확인' block outline small handleClick={handleConfirmClick}/>
-                        <BasicButton name='취소' block outline small handleClick={handleCancelClick}/>
+            {isOpenConfirm && <div className={`${classes.confirm} modal`}>
+                <div className='modal__overlay' onClick={handleOverlayClick}>
+                    <div className='modal-body'>
+                        <h3>
+                            {msg}
+                        </h3>
+                        <div className='modal-buttons row align-items-center justify-contents-between'>
+                            <BasicButton name='확인' block outline small handleClick={handleConfirmClick}/>
+                            <BasicButton name='취소' block outline small handleClick={handleCancelClick}/>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>}
+            </div>}
         </React.Fragment>
     )
 
@@ -34,5 +33,6 @@ export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg
 ConfirmModal.propTypes = {
     handleConfirmClick: PropTypes.func,
     handleCancelClick: PropTypes.func,
-    msg: PropTypes.string
+    msg: PropTypes.string,
+    isOpenConfirm: PropTypes.bool,
 };
