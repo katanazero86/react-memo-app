@@ -8,6 +8,8 @@
   background-color: $header-bg-color;
   color: $dark-color;
 
+  border-bottom: 1px solid $border-color;
+
   &__title {
     > p {
       font-size: 18px;

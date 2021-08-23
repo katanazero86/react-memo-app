@@ -105,7 +105,7 @@ export default function NoteInput() {
                     {selectedLabel &&
                     <div className={classes.selectedLabel} style={{'backgroundColor': `${selectedLabel.hex}`}}></div>}
                     <div className={`${classes.noteInputButtons} row align-items-center justify-contents-between`}>
-                        <BasicButton block name="초기화" handleClick={handleInitMemoClick}/>
+                        <BasicButton block name="초기화" handleClick={handleInitMemoClick} />
                         <BasicButton block name="작성" handleClick={handleSubmitClick}/>
                     </div>
 

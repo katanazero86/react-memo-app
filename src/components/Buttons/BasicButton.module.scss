@@ -4,19 +4,37 @@
 
 .button {
 
-    appearance: none;
-    outline: none;
-    border: 1px solid $secondary-color;
-    font-size: 16px;
-    background-color: $white-color;
-    color: $dark-color;
-    border-radius: 4px;
-    padding: 6px 10px;
-    cursor: pointer;
+  appearance: none;
+  outline: none;
+  border: 1px solid $primary-color;
+  font-size: 16px;
+  background-color: $primary-color;
+  color: $white-color;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: 500;
 
-    &--block {
-        width: 100%;
+  &--block {
+    width: 100%;
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+  }
+
+  @media (hover: hover) {
+
+    &:hover {
+      opacity: 0.85;
     }
+
+    &--outline:hover {
+      background-color: rgba(25,118,210, 0.1);
+    }
+  }
 
 }
 
