@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import {useAtom} from 'jotai';
 import {memoLabels} from '../../../store/atoms';
 import classes from './SelectLabelDropdown.module.scss';
-import AddBox from '../../Icons/AddBox';
-import BasicButton from "../../Buttons/BasicButton";
+import BasicButton from '../../Buttons/BasicButton';
 
 export default function SelectLabelDropdown({handleSelectItemClick}) {
 

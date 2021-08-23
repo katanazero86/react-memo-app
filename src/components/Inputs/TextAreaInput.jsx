@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './TextAreaInput.module.scss';
-import Limit from "./Limit/Limit";
+import Limit from './Limit/Limit';
 
 export default function TextAreaInput({id = '', name = '', placeholder = '', rows = 3, cols = 3, maxLength = 120, value, handleChange, inputRef = null}) {
     return (

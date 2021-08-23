@@ -69,8 +69,11 @@ export default function NoteInput() {
             return false;
         }
 
+        const tempKey = Math.random()
+            .toString(32).slice(2);
+
         const submitObj = {
-            idx: memoItems.length === 0 ? 1 : memoItems.length + 1,
+            id: tempKey,
             selectedLabel,
             title,
             memo,

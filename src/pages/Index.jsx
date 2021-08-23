@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Index.module.scss';
-import NoteInput from "../components/Note/NoteInput";
-import NoteList from "../components/Note/NoteList";
+import NoteInput from '@/components/Note/NoteInput';
+import NoteList from '@/components/Note/NoteList';
 
 export default function Index() {
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './BasicInput.module.scss';
-import Limit from "./Limit/Limit";
+import Limit from './Limit/Limit';
 
 export default function BasicInput({type = 'text', placeholder = '', handleChange, value, valueLimit = 0, inputRef = null}) {
     return (

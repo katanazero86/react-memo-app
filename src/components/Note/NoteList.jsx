@@ -23,7 +23,7 @@ const NoteItem = ({targetItem, handleDeleteClick, handleDragStart, handleDragEnd
     return (
         <div className={`${classes.noteListItem} pa-4`}
              ref={dragRef}
-             data-idx={targetItem.idx}>
+             data-id={targetItem.id}>
             <div className={`row align-items-center justify-contents-between`}>
                 <DragHandler/>
                 <Delete width={18} height={18} handleClick={() => handleDeleteClick(targetItem)}/>
@@ -61,7 +61,7 @@ export default function NoteList() {
     const handleDeleteClick = useCallback(targetItem => {
         const msg = '해당 메모를 삭제 하시겠습니까?';
         const confirmFunc = () => {
-            setMemoItems(memoItems.filter(item => item.idx !== targetItem.idx));
+            setMemoItems(memoItems.filter(item => item.id !== targetItem.id));
             setConfirm({
                 msg: '',
                 isOpenConfirm: false,
@@ -73,16 +73,16 @@ export default function NoteList() {
     }, [memoItems]);
 
     const handleDragStart = e => {
-        e.dataTransfer.setData('idx', e.target.dataset.idx);
+        e.dataTransfer.setData('text', e.target.dataset.id);
         e.target.style.opacity = '0.5';
     };
 
     const handleDrop = e => {
-        const targetIdx = e.dataTransfer.getData('idx');
-        const dropElIdx = e.currentTarget.dataset.idx;
-        if (targetIdx !== dropElIdx) {
-            const targetItemIndex = memoItems.findIndex(item => item.idx == targetIdx);
-            const dropItemIndex = memoItems.findIndex(item => item.idx == dropElIdx);
+        const targetId = e.dataTransfer.getData('text');
+        const dropElId = e.currentTarget.dataset.id;
+        if (targetId !== dropElId) {
+            const targetItemIndex = memoItems.findIndex(item => item.id == targetId);
+            const dropItemIndex = memoItems.findIndex(item => item.id == dropElId);
             const memoItemsArr = [...memoItems];
             const temp = memoItemsArr[dropItemIndex];
             memoItemsArr[dropItemIndex] = memoItemsArr[targetItemIndex];
@@ -109,7 +109,7 @@ export default function NoteList() {
                     </p>
                     {memoItems.length > 0 && (
                         memoItems.map(item => (
-                            <NoteItem key={item.idx}
+                            <NoteItem key={item.id}
                                       targetItem={item}
                                       handleDeleteClick={handleDeleteClick}
                                       handleDragStart={handleDragStart}

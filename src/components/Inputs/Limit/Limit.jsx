@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classes from "./Limit.module.scss";
+import classes from './Limit.module.scss';
 
 export default function Limit({value, valueLimit}) {
     return (
