@@ -56,19 +56,19 @@ export default function NoteInput() {
     const inputMemoRef = useRef(null);
     const [memoItems, setMemoItems] = useAtom(memoList);
     const handleSubmitClick = () => {
-        
-        if(title.trim() === '') {
+
+        if (title.trim() === '') {
             alert('제목을 입력해주세요.');
             inputTitleRef.current.focus();
             return false;
         }
 
-        if(memo.trim() === '') {
+        if (memo.trim() === '') {
             alert('메모를 입력해주세요.');
             inputMemoRef.current.focus();
             return false;
         }
-        
+
         const submitObj = {
             idx: memoItems.length === 0 ? 1 : memoItems.length + 1,
             selectedLabel,
@@ -103,9 +103,10 @@ export default function NoteInput() {
                         <SelectLabelDropdown handleSelectItemClick={handleSelectLabelClick}/>
                     </div>
                     {selectedLabel &&
-                    <div className={classes.selectedLabel} style={{'backgroundColor': `${selectedLabel.hex}`}}></div>}
+                    <div className={classes.selectedLabel} style={{'backgroundColor': `${selectedLabel.hex}`}}
+                         onClick={() => setSelectedLabel(null)}></div>}
                     <div className={`${classes.noteInputButtons} row align-items-center justify-contents-between`}>
-                        <BasicButton block name="초기화" handleClick={handleInitMemoClick} />
+                        <BasicButton block name="초기화" handleClick={handleInitMemoClick}/>
                         <BasicButton block name="작성" handleClick={handleSubmitClick}/>
                     </div>
 
