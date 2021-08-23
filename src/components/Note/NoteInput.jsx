@@ -8,7 +8,6 @@ import BasicInput from '@/components/Inputs/BasicInput';
 import TextAreaInput from '@/components/Inputs/TextAreaInput';
 import SelectLabelDropdown from '@/components/Note/SelectLabelDropdown/SelectLabelDropdown';
 import BasicButton from '@/components/Buttons/BasicButton';
-import ConfirmModal from "../Modal/ConfirmModal";
 
 export default function NoteInput() {
 
@@ -112,8 +111,6 @@ export default function NoteInput() {
 
                 </React.Fragment>
             )}
-
-            <ConfirmModal isOpenConfirm={true}/>
         </div>
     )
 }

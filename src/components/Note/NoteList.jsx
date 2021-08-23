@@ -1,8 +1,9 @@
-import React, {useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import {useAtom} from 'jotai';
 import {memoList} from '../../store/atoms';
 import classes from './NoteList.module.scss';
 import Delete from '../Icons/Delete';
+import ConfirmModal from '../Modal/ConfirmModal';
 
 const NoteItem = ({targetItem, handleDeleteClick}) => {
     return (
@@ -29,10 +30,28 @@ const NoteItem = ({targetItem, handleDeleteClick}) => {
 
 export default function NoteList() {
 
-    const [memoItems] = useAtom(memoList);
+    const [memoItems, setMemoItems] = useAtom(memoList);
+    const [confirm, setConfirm] = useState({
+        msg: '해당 메모를 삭제 하시겠습니까?',
+        isOpenConfirm: false,
+        confirmFunc: null,
+    })
 
     const handleDeleteClick = useCallback(targetItem => {
-        console.log(targetItem)
+        const confirmCallback = () => {
+            setMemoItems(memoItems.filter(item => item.idx !== targetItem.idx));
+            setConfirm({
+                ...confirm,
+                isOpenConfirm: false,
+                confirmFunc: null,
+            });
+        };
+        setConfirm({
+            ...confirm,
+            isOpenConfirm: true,
+            confirmFunc: confirmCallback,
+        });
+
     }, []);
 
     return (
@@ -47,6 +66,9 @@ export default function NoteList() {
                     )}
                 </div>
             }
+            <ConfirmModal isOpenConfirm={confirm.isOpenConfirm} msg="해당 메모를 삭제 하시겠습니까?"
+                          handleCancelClick={() => setConfirm({...confirm, isOpenConfirm: false,})}
+                          handleConfirmClick={confirm.confirmFunc}/>
         </React.Fragment>
     )
 }
