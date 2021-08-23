@@ -96,7 +96,7 @@ export default function NoteInput() {
                                     valueLimit={30} inputRef={inputTitleRef}/>
                     </div>
                     <div className={`${classes.noteInputInput}`}>
-                        <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={8}
+                        <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={5}
                                        maxLength={100} inputRef={inputMemoRef}/>
                     </div>
                     <div className={`${classes.noteInputLabel} row align-items-center`}>

@@ -8,18 +8,18 @@ import ConfirmModal from '../Modal/ConfirmModal';
 const NoteItem = ({targetItem, handleDeleteClick}) => {
     return (
         <div className={`${classes.noteListItem} pa-4`}>
-            <div className={`row align-items-center justify-contents-between`}>
-                <h4>
-                    {targetItem.title}
-                </h4>
-                <Delete width={16} height={16} handleClick={() => handleDeleteClick(targetItem)}/>
-            </div>
-            <div className={`row align-items-center justify-contents-end`}>
+            <div className={`row align-items-center ${targetItem.selectedLabel ? `justify-contents-between` : `justify-contents-end`}`}>
                 {targetItem.selectedLabel &&
                 <div className={classes.selectedLabel} style={{'backgroundColor': `${targetItem.selectedLabel.hex}`}}>
                     {targetItem.selectedLabel.name}
                 </div>
                 }
+                <Delete width={16} height={16} handleClick={() => handleDeleteClick(targetItem)}/>
+            </div>
+            <div className={classes.title}>
+                <h4>
+                    {targetItem.title}
+                </h4>
             </div>
             <p>
                 {targetItem.memo}
