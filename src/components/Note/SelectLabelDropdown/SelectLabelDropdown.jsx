@@ -4,6 +4,7 @@ import {useAtom} from 'jotai';
 import {memoLabels} from '../../../store/atoms';
 import classes from './SelectLabelDropdown.module.scss';
 import AddBox from '../../Icons/AddBox';
+import BasicButton from "../../Buttons/BasicButton";
 
 export default function SelectLabelDropdown({handleSelectItemClick}) {
 
@@ -32,10 +33,7 @@ export default function SelectLabelDropdown({handleSelectItemClick}) {
     return (
         <div className={`${classes.selectLabelDropdown} row align-items-center`} onClick={() => setIsOpen(!isOpen)}
              ref={dropdownRef}>
-            <AddBox/>
-            <span>
-                    Select Labels
-            </span>
+            <BasicButton name='Select Labels' secondary outline />
             {isOpen ? <ul>
                 {labels.map(label => {
                     return (

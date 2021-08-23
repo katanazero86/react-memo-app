@@ -15,6 +15,11 @@
   cursor: pointer;
   font-weight: 500;
 
+  &--secondary {
+    border: 1px solid $secondary-color;
+    background-color: $secondary-color;
+  }
+
   &--block {
     width: 100%;
   }
@@ -37,7 +42,33 @@
     }
 
     &--outline:hover {
-      background-color: rgba(25,118,210, 0.1);
+      background-color: rgba(25, 118, 210, 0.1);
+    }
+  }
+
+}
+
+// color: secondary
+.button {
+  &--secondary {
+    border: 1px solid $secondary-color;
+    background-color: $secondary-color;
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid $secondary-color;
+    color: $secondary-color;
+  }
+
+  @media (hover: hover) {
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &--outline:hover {
+      background-color: rgba(38, 166, 154, 0.1);
     }
   }
 
