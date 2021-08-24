@@ -7,7 +7,6 @@
   position: relative;
   background-color: $header-bg-color;
   color: $dark-color;
-
   border-bottom: 1px solid $border-color;
 
   &__title {
@@ -15,6 +14,25 @@
       font-size: 18px;
       letter-spacing: -0.5px;
       font-weight: 500;
+    }
+  }
+
+  &__nav {
+    a {
+      text-decoration: none;
+      color: $dark-color;
+      font-size: 16px;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+    }
+
+    @media (hover: hover) {
+      a:hover {
+        color: $white-color;
+      }
     }
   }
 }

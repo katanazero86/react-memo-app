@@ -5,16 +5,25 @@ import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import DefaultLayout from '@/components/Layouts/DefaultLayout';
 
 // components
-import Index from '@/pages/Index';
+const Index = React.lazy(() => import('@/pages/Index'));
+const About = React.lazy(() => import('@/pages/About/About'));
+
+// fallback component
+import Spinner from '@/components/Spinner/Spinner';
 
 export default function RouteWithLayout() {
     return (
-        <Router>
-            <Switch>
-                <Route path="/" exact>
-                    <DefaultLayout component={Index}/>
-                </Route>
-            </Switch>
-        </Router>
+        <React.Suspense fallback={<Spinner/>}>
+            <Router>
+                <Switch>
+                    <Route path="/" exact>
+                        <DefaultLayout component={<Index/>}/>
+                    </Route>
+                    <Route path="/about" exact>
+                        <DefaultLayout component={<About/>}/>
+                    </Route>
+                </Switch>
+            </Router>
+        </React.Suspense>
     )
 }
