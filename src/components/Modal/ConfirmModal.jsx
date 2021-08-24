@@ -1,31 +1,56 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import './Modal.scss';
 import classes from './ConfirmModal.module.scss';
-import BasicButton from '../Buttons/BasicButton';
+import BasicButton from '@/components/Buttons/BasicButton';
 
-export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg = '', isOpenConfirm = false}) {
+const CLOSE_MS = 200; // 0.2s
+
+export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg = ''}) {
+
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        const confirmModalEl = modalRef.current;
+        confirmModalEl.classList.toggle(classes.confirmActive);
+    }, []);
+
+    const giveFadeOut = () => {
+        const confirmModalEl = modalRef.current;
+        confirmModalEl.classList.toggle(classes.confirmActive);
+    };
+
     const handleOverlayClick = e => {
         e.preventDefault();
-        if (e.target === e.currentTarget) handleCancelClick();
-    }
+        if (e.target === e.currentTarget) {
+            giveFadeOut();
+            setTimeout(() => {
+                handleCancelClick();
+            }, CLOSE_MS);
+        }
+    };
+
+    const handleCancel = () => {
+        giveFadeOut();
+        setTimeout(() => {
+            handleCancelClick();
+        }, CLOSE_MS);
+    };
 
     return (
-        <React.Fragment>
-            {isOpenConfirm && <div className={`${classes.confirm} modal`}>
-                <div className='modal__overlay' onClick={handleOverlayClick}>
-                    <div className='modal-body'>
-                        <h3>
-                            {msg}
-                        </h3>
-                        <div className='modal-buttons row align-items-center justify-contents-between'>
-                            <BasicButton name='확인' block outline small handleClick={handleConfirmClick}/>
-                            <BasicButton name='취소' block outline small handleClick={handleCancelClick}/>
-                        </div>
+        <div className={`${classes.confirm} modal`} ref={modalRef}>
+            <div className='modal__overlay' onClick={handleOverlayClick}>
+                <div className='modal-body'>
+                    <h3>
+                        {msg}
+                    </h3>
+                    <div className='modal-buttons row align-items-center justify-contents-between'>
+                        <BasicButton name='확인' block outline small handleClick={handleConfirmClick}/>
+                        <BasicButton name='취소' block outline small handleClick={handleCancel}/>
                     </div>
                 </div>
-            </div>}
-        </React.Fragment>
+            </div>
+        </div>
     )
 
 }
@@ -34,5 +59,4 @@ ConfirmModal.propTypes = {
     handleConfirmClick: PropTypes.func,
     handleCancelClick: PropTypes.func,
     msg: PropTypes.string,
-    isOpenConfirm: PropTypes.bool,
 };

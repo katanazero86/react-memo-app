@@ -61,12 +61,16 @@ export default function NoteList() {
     const handleDeleteClick = useCallback(targetItem => {
         const msg = '해당 메모를 삭제 하시겠습니까?';
         const confirmFunc = () => {
-            setMemoItems(memoItems.filter(item => item.id !== targetItem.id));
-            setConfirm({
-                msg: '',
-                isOpenConfirm: false,
-                confirmFunc: null,
-            });
+            try {
+                setMemoItems(memoItems.filter(item => item.id !== targetItem.id));
+                setConfirm({
+                    msg: '',
+                    isOpenConfirm: false,
+                    confirmFunc: null,
+                });
+            } catch (e) {
+                console.log(e);
+            }
         };
         openConfirm(msg, confirmFunc);
 
@@ -121,10 +125,12 @@ export default function NoteList() {
                     )}
                 </div>
             }
-            <ConfirmModal isOpenConfirm={confirm.isOpenConfirm}
-                          msg={confirm.msg}
-                          handleCancelClick={handleCancelClick}
-                          handleConfirmClick={confirm.confirmFunc}/>
+            {
+                confirm.isOpenConfirm ? <ConfirmModal msg={confirm.msg}
+                                                      handleCancelClick={handleCancelClick}
+                                                      handleConfirmClick={confirm.confirmFunc}/> : ''
+            }
+
         </React.Fragment>
     )
 }
