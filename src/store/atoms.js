@@ -1,5 +1,6 @@
-import { atom } from 'jotai'
+import {atom} from 'jotai'
 
+// memo 작성 시, 사용하는 라벨
 export const memoLabels = atom([
     {
         id: 'label-1',
@@ -33,5 +34,5 @@ export const memoLabels = atom([
     },
 ]);
 
-
+// memo 목록 상태값
 export const memoList = atom([]);
