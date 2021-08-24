@@ -34,7 +34,7 @@
 ```
 /src/assets : icons, images, scss 정적자원을 관리하는 폴더
 /src/components : React 컴포넌트를 관리하는 폴더
-/src/pages : React 컨테이너 컴포넌트를 관리하는 폴더
+/src/pages : React 컨테이너 컴포넌트를 관리하는 폴더(컨테이너 컴포넌트를 묶은 컨테이너가 될 수도 있으며, 단순한 page 일 수도 있습니다.
 /src/hooks : React 커스텀훅을 관리하는 폴더
 /src/router : React-router
 /src/store : Jotai
