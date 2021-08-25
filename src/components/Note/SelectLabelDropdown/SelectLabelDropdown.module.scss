@@ -48,8 +48,14 @@
         border-radius: 10px;
       }
 
-      @media (hover: hover) {
+      @include pointer-fine() {
         &:hover {
+          background-color: #ededed;
+        }
+      }
+
+      @include pointer-coarse() {
+        &:active {
           background-color: #ededed;
         }
       }

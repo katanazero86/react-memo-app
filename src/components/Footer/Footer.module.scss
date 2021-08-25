@@ -18,15 +18,19 @@
     span {
       cursor: pointer;
     }
-  }
 
-
-  @media (hover: hover) {
-    &__link {
+    @include pointer-fine() {
       span:hover {
         color: $white-color;
       }
     }
+
+    @include pointer-coarse() {
+      span:active {
+        color: $white-color;
+      }
+    }
+
   }
 
 }

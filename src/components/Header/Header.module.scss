@@ -29,10 +29,17 @@
 
     }
 
-    @media (hover: hover) {
+    @include pointer-fine() {
       a:hover {
         color: $white-color;
       }
     }
+
+    @include pointer-coarse() {
+      a:active {
+        color: $white-color;
+      }
+    }
+
   }
 }

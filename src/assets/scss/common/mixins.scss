@@ -116,7 +116,7 @@
   /* total width */
   &::-webkit-scrollbar {
     background-color: $white-color;
-    width: 16px
+    width: 14px
   }
 
   /* background of the scrollbar except button or resizer */
@@ -134,5 +134,19 @@
   /* set button(top and bottom of the scrollbar) */
   &::-webkit-scrollbar-button {
     display: none
+  }
+}
+
+@mixin pointer-coarse {
+  // smartphone, touchscreen
+  @media (pointer: coarse) {
+    @content
+  }
+}
+
+@mixin pointer-fine {
+  // mouse
+  @media (pointer: fine) {
+    @content
   }
 }
