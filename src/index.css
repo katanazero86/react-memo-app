@@ -17,6 +17,7 @@ ul, li {
 * {
   box-sizing: border-box;
   font-family: 'Noto Sans KR', sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #root {
