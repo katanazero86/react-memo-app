@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .alert {
-  transition: opacity 0.15s linear;
+  transition: opacity 0.1s linear;
   opacity: 0;
 
   &--active {

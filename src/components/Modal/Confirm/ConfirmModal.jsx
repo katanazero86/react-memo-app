@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import './Modal.scss';
+import '../Modal.scss';
 import classes from './ConfirmModal.module.scss';
 import BasicButton from '@/components/Buttons/BasicButton';
 

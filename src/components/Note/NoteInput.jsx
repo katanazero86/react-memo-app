@@ -8,8 +8,8 @@ import BasicInput from '@/components/Inputs/BasicInput';
 import TextAreaInput from '@/components/Inputs/TextAreaInput';
 import SelectLabelDropdown from '@/components/Note/SelectLabelDropdown/SelectLabelDropdown';
 import BasicButton from '@/components/Buttons/BasicButton';
-import AlertModal from '@/components/Modal/AlertModal';
-import useAlertModal from "../../hooks/useAlertModal";
+import AlertModal from '@/components/Modal/Alert/AlertModal';
+import useAlertModal from '@/hooks/useAlertModal';
 
 export default function NoteInput() {
 

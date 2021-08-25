@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {useAtom} from 'jotai';
-import {memoList} from '../../store/atoms';
-import useConfirmModal from '../../hooks/useConfirmModal';
-import useDragAndDrop from '../../hooks/useDragAndDrop';
+import {memoList} from '@/store/atoms';
+import useConfirmModal from '@/hooks/useConfirmModal';
+import useDragAndDrop from '@/hooks/useDragAndDrop';
 import classes from './NoteList.module.scss';
-import Delete from '../Icons/Delete';
-import DragHandler from '../Icons/DragHandler';
-import ConfirmModal from '../Modal/ConfirmModal';
+import Delete from '@/components/Icons/Delete';
+import DragHandler from '@/components/Icons/DragHandler';
+import ConfirmModal from '@/components/Modal/Confirm/ConfirmModal';
 
 const NoteItem = ({targetItem, handleDeleteClick, handleDragStart, handleDragEnd, handleDrop, handleDragOver}) => {
 
@@ -129,7 +129,7 @@ export default function NoteList() {
                 confirm.isOpenConfirm ? <ConfirmModal msg={confirm.msg}
                                                       handleConfirmFunc={confirm.confirmFunc}
                                                       handleCancelClick={handleCancelClick}
-                                                      /> : ''
+                /> : ''
             }
 
         </React.Fragment>
