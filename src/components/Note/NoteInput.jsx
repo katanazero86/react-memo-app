@@ -61,7 +61,7 @@ export default function NoteInput() {
             alert('제목을 입력해주세요.');
             setTimeout(() => {
                 inputTitleRef.current.focus();
-            }, 100);
+            }, 1);
             return false;
         }
 
