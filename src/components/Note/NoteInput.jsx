@@ -8,8 +8,12 @@ import BasicInput from '@/components/Inputs/BasicInput';
 import TextAreaInput from '@/components/Inputs/TextAreaInput';
 import SelectLabelDropdown from '@/components/Note/SelectLabelDropdown/SelectLabelDropdown';
 import BasicButton from '@/components/Buttons/BasicButton';
+import AlertModal from '@/components/Modal/AlertModal';
+import useAlertModal from "../../hooks/useAlertModal";
 
 export default function NoteInput() {
+
+    const {alert, setAlert, handleAlertConfirmClick, openAlert} = useAlertModal();
 
     const [addIsOpen, setAddIsOpen] = useState(true);
     const handleAddIsOpenOpen = useCallback(() => {
@@ -58,12 +62,12 @@ export default function NoteInput() {
     const handleSubmitClick = () => {
 
         if (title.trim() === '') {
-            inputTitleRef.current.focus();
+            openAlert('제목을 입력해주세요.', () => inputTitleRef.current.focus());
             return false;
         }
 
         if (memo.trim() === '') {
-            inputMemoRef.current.focus();
+            openAlert('메모를 입력해주세요.', () => inputMemoRef.current.focus());
             return false;
         }
 
@@ -113,6 +117,9 @@ export default function NoteInput() {
 
                 </React.Fragment>
             )}
+
+            {alert.isOpenAlert && <AlertModal msg={alert.msg} handleAlertConfirmClick={handleAlertConfirmClick} handleAlertConfirmFunc={alert.confirmFunc} />}
+
         </div>
     )
 }
