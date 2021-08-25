@@ -58,18 +58,15 @@ export default function NoteInput() {
     const handleSubmitClick = () => {
 
         if (title.trim() === '') {
-            alert('제목을 입력해주세요.');
-            setTimeout(() => {
-                handleFocus(inputTitleRef.current)
-            });
-
+            // alert('제목을 입력해주세요.');
+            handleFocus(inputTitleRef.current);
             return false;
         }
 
         if (memo.trim() === '') {
             alert('메모를 입력해주세요.');
             setTimeout(() => {
-                handleFocus(inputMemoRef.current)
+                handleFocus(inputMemoRef.current);
             }, 1000);
             return false;
         }
