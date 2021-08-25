@@ -15,6 +15,7 @@ export default function TextAreaInput({id = '', name = '', placeholder = '', row
                       maxLength={maxLength}
                       value={value}
                       onChange={e => handleChange(e.target.value)}
+                      onBlur={e => alert('zzz')}
                       ref={inputRef}
             />
             {maxLength > 0 ? <Limit value={value} valueLimit={maxLength}/> : ''}
