@@ -60,13 +60,13 @@ export default function NoteInput() {
         if (title.trim() === '') {
             alert('제목을 입력해주세요.');
             inputTitleRef.current.focus();
-            return false;
+            return;
         }
 
         if (memo.trim() === '') {
             alert('메모를 입력해주세요.');
             inputMemoRef.current.focus();
-            return false;
+            return;
         }
 
         const tempKey = Math.random()
