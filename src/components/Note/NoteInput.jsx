@@ -59,15 +59,13 @@ export default function NoteInput() {
 
         if (title.trim() === '') {
             alert('제목을 입력해주세요.');
-            setTimeout(() => {
-                inputTitleRef.current.focus();
-            }, 500);
+            handleFocus(inputTitleRef.current);
             return false;
         }
 
         if (memo.trim() === '') {
             alert('메모를 입력해주세요.');
-            inputMemoRef.current.focus();
+            handleFocus(inputMemoRef.current);
             return false;
         }
 
@@ -84,6 +82,10 @@ export default function NoteInput() {
         handleInitMemoClick();
     }
 
+    const handleFocus = targetEl => {
+        targetEl.focus();
+    }
+
     return (
         <div className={`${classes.noteInput} pa-4`}>
             <header className={`${classes.noteInputHeader} row align-items-center justify-contents-between`}>
@@ -97,11 +99,11 @@ export default function NoteInput() {
             {addIsOpen && (
                 <React.Fragment>
                     <div className={`${classes.noteInputInput}`}>
-                        <BasicInput type="text" value={title} placeholder="제목" handleChange={handleTitleChange}
+                        <BasicInput type="text" value={title} placeholder="제목*" handleChange={handleTitleChange}
                                     valueLimit={30} inputRef={inputTitleRef}/>
                     </div>
                     <div className={`${classes.noteInputInput}`}>
-                        <TextAreaInput placeholder="메모" value={memo} handleChange={handleMemoChange} rows={5}
+                        <TextAreaInput placeholder="메모*" value={memo} handleChange={handleMemoChange} rows={5}
                                        maxLength={100} inputRef={inputMemoRef}/>
                     </div>
                     <div className={`${classes.noteInputLabel} row align-items-center`}>
