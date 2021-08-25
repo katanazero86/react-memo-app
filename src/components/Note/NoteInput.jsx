@@ -65,7 +65,9 @@ export default function NoteInput() {
 
         if (memo.trim() === '') {
             alert('메모를 입력해주세요.');
-            inputMemoRef.current.focus();
+            setTimeout(() => {
+                inputMemoRef.current.focus();
+            },1000);
             return false;
         }
 
