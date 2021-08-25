@@ -36,7 +36,7 @@ export default function ConfirmModal({handleAlertConfirmClick, handleAlertConfir
     const handleConfirm = () => {
         giveFadeOut();
         setTimeout(() => {
-            if(handleAlertConfirmFunc) handleAlertConfirmFunc();
+            if (handleAlertConfirmFunc) handleAlertConfirmFunc();
             handleAlertConfirmClick();
         }, CLOSE_MS);
     };

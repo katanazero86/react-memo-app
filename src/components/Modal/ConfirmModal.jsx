@@ -39,10 +39,10 @@ export default function ConfirmModal({handleConfirmFunc = null, handleCancelClic
     const handleConfirm = () => {
         giveFadeOut();
         setTimeout(() => {
-            if(handleConfirmFunc) handleConfirmFunc();
+            if (handleConfirmFunc) handleConfirmFunc();
             handleCancelClick();
         }, CLOSE_MS);
-    }
+    };
 
     return (
         <div className={`${classes.confirm} modal`} ref={modalRef}>
