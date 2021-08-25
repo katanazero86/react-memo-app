@@ -127,8 +127,9 @@ export default function NoteList() {
             }
             {
                 confirm.isOpenConfirm ? <ConfirmModal msg={confirm.msg}
+                                                      handleConfirmFunc={confirm.confirmFunc}
                                                       handleCancelClick={handleCancelClick}
-                                                      handleConfirmClick={confirm.confirmFunc}/> : ''
+                                                      /> : ''
             }
 
         </React.Fragment>

@@ -6,7 +6,7 @@ import BasicButton from '@/components/Buttons/BasicButton';
 
 const CLOSE_MS = 200; // 0.2s
 
-export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg = ''}) {
+export default function ConfirmModal({handleConfirmFunc = null, handleCancelClick, msg = ''}) {
 
     const modalRef = useRef(null);
 
@@ -21,7 +21,6 @@ export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg
     };
 
     const handleOverlayClick = e => {
-        e.preventDefault();
         if (e.target === e.currentTarget) {
             giveFadeOut();
             setTimeout(() => {
@@ -37,6 +36,14 @@ export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg
         }, CLOSE_MS);
     };
 
+    const handleConfirm = () => {
+        giveFadeOut();
+        setTimeout(() => {
+            if(handleConfirmFunc) handleConfirmFunc();
+            handleCancelClick();
+        }, CLOSE_MS);
+    }
+
     return (
         <div className={`${classes.confirm} modal`} ref={modalRef}>
             <div className='modal__overlay' onClick={handleOverlayClick}>
@@ -45,7 +52,7 @@ export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg
                         {msg}
                     </h3>
                     <div className='modal-buttons row align-items-center justify-contents-between'>
-                        <BasicButton name='확인' block outline small handleClick={handleConfirmClick}/>
+                        <BasicButton name='확인' block outline small handleClick={handleConfirm}/>
                         <BasicButton name='취소' block outline small handleClick={handleCancel}/>
                     </div>
                 </div>
@@ -56,7 +63,7 @@ export default function ConfirmModal({handleConfirmClick, handleCancelClick, msg
 }
 
 ConfirmModal.propTypes = {
-    handleConfirmClick: PropTypes.func,
+    handleConfirmFunc: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     handleCancelClick: PropTypes.func,
     msg: PropTypes.string,
 };
