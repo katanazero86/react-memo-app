@@ -70,7 +70,7 @@ export default function NoteInput() {
             alert('메모를 입력해주세요.');
             setTimeout(() => {
                 handleFocus(inputMemoRef.current)
-            });
+            }, 1000);
             return false;
         }
 
