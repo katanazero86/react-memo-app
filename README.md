@@ -40,6 +40,7 @@
 /src/store : Jotai
 
 - 컴포넌트(*.jsx)명은 대문자로 시작(Index.jsx or About.jsx)
-- 기본적인 CSS 작성은 CSS module 적극 권장
+- 기본적인 CSS 작성은 CSS module 적극 권장(해당 컴포넌트에 classes 라는 이름으로 import)
+- event 함수명은 handle 접두사로 시작하며, handelEventName 또는 handle{object}EventName : handleClick, handleConfirmClick
 
 ```
