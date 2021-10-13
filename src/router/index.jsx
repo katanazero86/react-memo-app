@@ -1,5 +1,5 @@
-import React from "react";
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // layouts
 import DefaultLayout from '@/components/Layouts/DefaultLayout';
@@ -12,18 +12,18 @@ const About = React.lazy(() => import('@/pages/About/About'));
 import Spinner from '@/components/Spinner/Spinner';
 
 export default function RouteWithLayout() {
-    return (
-        <React.Suspense fallback={<Spinner/>}>
-            <Router>
-                <Switch>
-                    <Route path="/" exact>
-                        <DefaultLayout component={<Index/>}/>
-                    </Route>
-                    <Route path="/about" exact>
-                        <DefaultLayout component={<About/>}/>
-                    </Route>
-                </Switch>
-            </Router>
-        </React.Suspense>
-    )
+  return (
+    <React.Suspense fallback={<Spinner />}>
+      <Router>
+        <Switch>
+          <Route path='/' exact>
+            <DefaultLayout component={<Index />} />
+          </Route>
+          <Route path='/about' exact>
+            <DefaultLayout component={<About />} />
+          </Route>
+        </Switch>
+      </Router>
+    </React.Suspense>
+  );
 }

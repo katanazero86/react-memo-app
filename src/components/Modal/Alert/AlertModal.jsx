@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../Modal.scss';
 import classes from './AlertModal.module.scss';
@@ -6,60 +6,56 @@ import BasicButton from '@/components/Buttons/BasicButton';
 
 const CLOSE_MS = 100; // 0.1s
 
-export default function ConfirmModal({handleAlertConfirmClick, handleAlertConfirmFunc = null, msg = ''}) {
+export default function ConfirmModal({ handleAlertConfirmClick, handleAlertConfirmFunc = null, msg = '' }) {
+  const modalRef = useRef(null);
 
-    const modalRef = useRef(null);
-
-    useEffect(() => {
-        const alertModalEl = modalRef.current;
-        if (alertModalEl) {
-            alertModalEl.classList.toggle(classes.alertActive);
-        }
-        return () => {
-            alertModalEl.classList.toggle(classes.alertActive);
-        }
-    }, []);
-
-    const giveFadeOut = () => {
-        const alertModalEl = modalRef.current;
-        if (alertModalEl) {
-            alertModalEl.classList.toggle(classes.alertActive);
-        }
+  useEffect(() => {
+    const alertModalEl = modalRef.current;
+    if (alertModalEl) {
+      alertModalEl.classList.toggle(classes.alertActive);
+    }
+    return () => {
+      alertModalEl.classList.toggle(classes.alertActive);
     };
+  }, []);
 
-    const handleOverlayClick = e => {
-        if (e.target === e.currentTarget) {
-            handleConfirm();
-        }
-    };
+  const giveFadeOut = () => {
+    const alertModalEl = modalRef.current;
+    if (alertModalEl) {
+      alertModalEl.classList.toggle(classes.alertActive);
+    }
+  };
 
-    const handleConfirm = () => {
-        giveFadeOut();
-        setTimeout(() => {
-            if (handleAlertConfirmFunc) handleAlertConfirmFunc();
-            handleAlertConfirmClick();
-        }, CLOSE_MS);
-    };
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      handleConfirm();
+    }
+  };
 
-    return (
-        <div className={`${classes.alert} modal`} ref={modalRef}>
-            <div className='modal__overlay' onClick={handleOverlayClick}>
-                <div className='modal-body'>
-                    <h3>
-                        {msg}
-                    </h3>
-                    <div className='modal-button row align-items-center justify-contents-between'>
-                        <BasicButton name='확인' block outline small handleClick={handleConfirm}/>
-                    </div>
-                </div>
-            </div>
+  const handleConfirm = () => {
+    giveFadeOut();
+    setTimeout(() => {
+      if (handleAlertConfirmFunc) handleAlertConfirmFunc();
+      handleAlertConfirmClick();
+    }, CLOSE_MS);
+  };
+
+  return (
+    <div className={`${classes.alert} modal`} ref={modalRef}>
+      <div className='modal__overlay' onClick={handleOverlayClick}>
+        <div className='modal-body'>
+          <h3>{msg}</h3>
+          <div className='modal-button row align-items-center justify-contents-between'>
+            <BasicButton name='확인' block outline small handleClick={handleConfirm} />
+          </div>
         </div>
-    )
-
+      </div>
+    </div>
+  );
 }
 
 ConfirmModal.propTypes = {
-    handleAlertConfirmClick: PropTypes.func,
-    handleAlertConfirmFunc: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    msg: PropTypes.string,
+  handleAlertConfirmClick: PropTypes.func,
+  handleAlertConfirmFunc: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  msg: PropTypes.string,
 };
